@@ -26,6 +26,9 @@ spec:
         - name: rstudio-server-workspace-pv-storage
           persistentVolumeClaim:
             claimName: rstudio-server-workspace-pv-claim
+        - name: rstudio-server-packages-pv-storage
+          persistentVolumeClaim:
+            claimName: rstudio-server-packages-pv-claim
       containers:
         - name: rstudio-server
           image: rocker/rstudio:latest
@@ -46,6 +49,8 @@ spec:
               name: rstudio-server-config-pv-storage
             - mountPath: "/home/rstudio/workspace"
               name: rstudio-server-workspace-pv-storage
+            - mountPath: "/usr/local/lib/R/site-library"
+              name: rstudio-server-packages-pv-storage
           livenessProbe:
             httpGet:
               path: /
@@ -87,7 +92,23 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: 5Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: rstudio-server-packages-pv-claim
+  namespace: rstudio
+  labels:
+    app.kubernetes.io/name: rstudio-server
+    app.kubernetes.io/instance: rstudio  
+spec:
+#  storageClassName: nfs-client # Needs to be specified if no default class is set
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 ---
 apiVersion: v1
 kind: Service
