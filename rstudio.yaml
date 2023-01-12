@@ -33,6 +33,8 @@ spec:
         - name: rstudio-server
           image: rocker/rstudio:latest
           env:
+            - name: USER
+              value: rstudio
             - name: PASSWORD
               valueFrom:
                 secretKeyRef:
