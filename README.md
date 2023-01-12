@@ -1,5 +1,5 @@
 # k8s-rstudio-server
-Kubernetes deployment for RStudio-Server
+RStudio-Server deployment for Kubernetes Cluster
 
 ## Prerequisites
 - StorageClass - For persistent volume
