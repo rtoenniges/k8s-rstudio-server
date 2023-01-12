@@ -1,5 +1,5 @@
 # k8s-rstudio-server
-Vaultwarden deployment for RStudio-Server
+Kubernetes deployment for RStudio-Server
 
 ## Prerequisites
 - StorageClass - For persistent volume
