@@ -53,6 +53,13 @@ spec:
               name: rstudio-server-workspace-pv-storage
             - mountPath: "/usr/local/lib/R/site-library"
               name: rstudio-server-packages-pv-storage
+          resources:
+            limits:
+              cpu: 500m
+              memory: 512Mi
+            requests:
+              cpu: 100m
+              memory: 256Mi
           livenessProbe:
             httpGet:
               path: /
