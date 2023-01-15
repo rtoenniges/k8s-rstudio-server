@@ -29,6 +29,10 @@ spec:
         - name: rstudio-server-packages-pv-storage
           persistentVolumeClaim:
             claimName: rstudio-server-packages-pv-claim
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
       containers:
         - name: rstudio-server
           image: rocker/rstudio:latest
